@@ -38,7 +38,7 @@ const exercises = [
       image: "images/exercises/walkingLunges.png"
     },
     {
-      name: "Front Squat",
+        name: "Front Squat",
       bodyPart: "Legs",
       type: "Compound",
       recommendedByMe: false,
@@ -47,7 +47,7 @@ const exercises = [
       image: "images/exercises/frontSquat.png"
     },
     {
-      name: "Bulgarian Split Squat",
+        name: "Bulgarian Split Squat",
       bodyPart: "Legs",
       type: "Compound",
       recommendedByMe: false,
@@ -73,6 +73,15 @@ const exercises = [
       notes: "Good accessory for hamstring hypertrophy.",
       image: "images/exercises/legCurlMachine.png"
     },
+    {
+        name: "Leg Extension Machine",
+        bodyPart: "Legs",
+        type: "Isolation",
+        recommendedByMe: true,
+        cues: ["Control each rep", "Squeeze at contraction", "No bouncing"],
+        notes: "Good accessory for hamstring hypertrophy.",
+        image: "images/exercises/legExtension.png"
+      },
     {
       name: "Glute Ham Raise",
       bodyPart: "Hamstrings",

@@ -73,6 +73,7 @@ html, body {
   border-radius: 10px;
   background-color: white;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .card-content {
@@ -81,13 +82,16 @@ html, body {
 
 .card-content h2 {
   margin-top: 0;
+  margin-bottom: 2px;
   font-size: 1.2rem;
   color: #333;
+  text-align: center;
 }
 
 .card img {
   width: 100%;
-  height: auto;
+  height: 180px;
+  object-fit: cover;
   border-radius: 6px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -150,5 +154,74 @@ html, body {
   .card {
     width: 100%; /* Full width on phones */
   }
+}
+
+.tag {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  border-radius: 6px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+
+/* Body Part Label */
+.body-tag {
+  background-color: #777;
+}
+
+/* Type Tags (color-coded) */
+.type-tag.compound {
+  background-color: #2d87f0;
+}
+
+.type-tag.isolation {
+  background-color: #f0932b;
+}
+
+.type-tag.isometric {
+  background-color: #27ae60;
+}
+
+.tag-container {
+  margin-top: 2px;
+  margin-bottom: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: center;
+}
+
+.tag {
+  display: inline-block;
+  padding: 3px 8px;
+  font-size: 0.75rem;
+  border-radius: 6px;
+  font-weight: bold;
+  color: white;
+}
+
+/* Tag Colors */
+.body-tag {
+  background-color: #777;
+}
+
+.type-tag.compound {
+  background-color: #2d87f0;
+}
+
+.type-tag.isolation {
+  background-color: #f0932b;
+}
+
+.type-tag.isometric {
+  background-color: #27ae60;
+}
+
+.star-tag {
+  background-color: #ffc107;
+  color: #000;
 }
 

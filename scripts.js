@@ -11,7 +11,7 @@ function showCards() {
     let exercise = exercises[i];
     let imageURL = exercise.image;
     const nextCard = templateCard.cloneNode(true); // Copy the template card
-    editCardContent(nextCard, exercise.name, imageURL, exercise.cues); // Edit title and image
+    editCardContent(nextCard, exercise.name, imageURL, exercise.cues, exercise.bodyPart, exercise.type, exercise.recommendedByMe); // Edit title and image
     nextCard.addEventListener("click", function () {
       addToWorkout(exercise.name);
       removeCardWithAnimation(nextCard);
@@ -20,11 +20,27 @@ function showCards() {
   }
 }
 
-function editCardContent(card, newTitle, newImageURL, cues) {
+function editCardContent(card, newTitle, newImageURL, cues, bodyPart, type, recommended) {
   card.style.display = "block";
 
   const cardHeader = card.querySelector("h2");
   cardHeader.textContent = newTitle;
+
+  // Inject tag container (right below header)
+  let tagContainer = card.querySelector(".tag-container");
+  if (!tagContainer) {
+    tagContainer = document.createElement("div");
+    tagContainer.classList.add("tag-container");
+    cardHeader.insertAdjacentElement("afterend", tagContainer);
+  }
+
+  tagContainer.innerHTML = `
+    ${recommended ? '<div class="tag-row single-row"><span class="tag star-tag">⭐ Recommended</span></div>' : ''}
+    <div class="tag-row">
+      <span class="tag body-tag">${bodyPart}</span>
+      <span class="tag type-tag ${type.toLowerCase()}">${type}</span>
+    </div>
+  `;
 
   const cardImage = card.querySelector("img");
   cardImage.src = newImageURL;
