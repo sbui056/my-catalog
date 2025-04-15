@@ -20,7 +20,32 @@
      <section id="exercise-list" class="main-column">
        <h2 class="section-title">Exercise Catalog</h2>
         <div class="top-panel">
-          <button onclick="quoteAlert();">Get A Quote!</button>
+          <select id="sortFilter" class="sort-dropdown">
+            <option value="all">All Exercises</option>
+          
+            <!-- Sort options -->
+            <option value="name">Sort: A → Z</option>
+          
+            <!-- Type filters -->
+            <option value="compound">Type: Compound</option>
+            <option value="isolation">Type: Isolation</option>
+            <option value="isometric">Type: Isometric</option>
+          
+            <!-- Body Part filters -->
+            <option value="arms">Body Part: Arms</option>
+            <option value="back">Body Part: Back</option>
+            <option value="chest">Body Part: Chest</option>
+            <option value="core">Body Part: Core</option>
+            <option value="full body">Body Part: Full Body</option>
+            <option value="glutes">Body Part: Glutes</option>
+            <option value="hamstrings">Body Part: Hamstrings</option>
+            <option value="legs">Body Part: Legs</option>
+            <option value="shoulders">Body Part: Shoulders</option>
+          
+            <!-- Recommended filter -->
+            <option value="recommended">⭐ Recommended by Me</option>
+          </select>
+          
           <button onclick="removeLastCard();">Remove An Exercise!</button>
           <input type="text"id="searchBar" placeholder="Search exercises..." class="search-input"/>
             <p id="search-result" class="search-message"></p>

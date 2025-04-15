@@ -35,12 +35,12 @@ function editCardContent(card, newTitle, newImageURL, cues, bodyPart, type, reco
   }
 
   tagContainer.innerHTML = `
-    ${recommended ? '<div class="tag-row single-row"><span class="tag star-tag">⭐ Recommended</span></div>' : ''}
-    <div class="tag-row">
-      <span class="tag body-tag">${bodyPart}</span>
-      <span class="tag type-tag ${type.toLowerCase()}">${type}</span>
-    </div>
-  `;
+  <div class="tag-row">
+    ${recommended ? '<span class="tag star-tag">⭐ Recommended</span>' : ''}
+    <span class="tag body-tag">${bodyPart}</span>
+    <span class="tag type-tag ${type.toLowerCase()}">${type}</span>
+  </div>
+`;
 
   const cardImage = card.querySelector("img");
   cardImage.src = newImageURL;
@@ -68,14 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
     form.addEventListener("submit", addExercise);
   }
 });
-
-
-function quoteAlert() {
-  console.log("Button Clicked!");
-  alert(
-    "I guess I can kiss heaven goodbye, because it got to be a sin to look this good!"
-  );
-}
 
 function removeLastCard() {
   exercises.pop(); // Remove last item in titles array
@@ -157,4 +149,44 @@ function searchExercises() {
   }
 
   showCards(filteredExercises);
+}
+
+document.getElementById("sortFilter").addEventListener("change", filterExercises);
+
+function filterExercises() {
+  const selected = document.getElementById("sortFilter").value;
+  let filtered = [];
+
+  switch (selected) {
+    case "name":
+      filtered = [...exercises].sort((a, b) => a.name.localeCompare(b.name));
+      break;
+
+    case "compound":
+    case "isolation":
+    case "isometric":
+      filtered = exercises.filter(ex => ex.type.toLowerCase() === selected);
+      break;
+
+    case "arms":
+    case "back":
+    case "chest":
+    case "core":
+    case "full body":
+    case "glutes":
+    case "hamstrings":
+    case "legs":
+    case "shoulders":
+      filtered = exercises.filter(ex => ex.bodyPart.toLowerCase() === selected);
+      break;
+
+    case "recommended":
+      filtered = exercises.filter(ex => ex.recommendedByMe === true);
+      break;
+
+    default:
+      filtered = [...exercises];
+  }
+
+  showCards(filtered);
 }

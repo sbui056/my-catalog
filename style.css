@@ -161,11 +161,12 @@ html, body {
   display: inline-block;
   margin-left: 4px;
   padding: 2px 6px;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   border-radius: 6px;
   font-weight: bold;
   color: white;
   text-align: center;
+  white-space: nowrap;
 }
 
 /* Body Part Label */
@@ -193,6 +194,16 @@ html, body {
   flex-wrap: wrap;
   gap: 4px;
   justify-content: center;
+}
+
+.tag-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+  margin-bottom: 8px;
 }
 
 .tag {
@@ -257,16 +268,41 @@ html, body {
 }
 
 .search-input {
+  margin-left: auto; /* pushes it all the way to the right */
   padding: 10px;
   font-size: 1rem;
   border-radius: 6px;
   border: 1px solid #ccc;
   width: 100%;
-  max-width: 400px;
+  max-width: 300px;
 }
 
 .search-message {
   font-size: 0.95rem;
   color: #888;
   margin-top: 5px;
+}
+
+.sort-dropdown {
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #333;
+  appearance: none; /* Removes default arrow styling on most browsers */
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sort-dropdown:hover {
+  border-color: #888;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.sort-dropdown:focus {
+  outline: none;
+  border-color: #2d87f0;
+  box-shadow: 0 0 0 3px rgba(45, 135, 240, 0.2);
 }
