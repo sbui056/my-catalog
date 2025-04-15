@@ -1,32 +1,42 @@
-// all the exercise data is cleanly organized into exercises.js
+// Import the exercise data
 import exercises from "./exercises.js";
 
-// This function adds cards the page to display the data in the array
+/* ========== CARD DISPLAY ========== */
+
 function showCards(exerciseList = exercises) {
   const cardContainer = document.getElementById("card-container");
   cardContainer.innerHTML = "";
   const templateCard = document.querySelector(".card");
 
-  for (let i = 0; i < exercises.length; i++) {
-    let exercise = exerciseList[i];
-    let imageURL = exercise.image;
-    const nextCard = templateCard.cloneNode(true); // Copy the template card
-    editCardContent(nextCard, exercise.name, imageURL, exercise.cues, exercise.bodyPart, exercise.type, exercise.recommendedByMe); // Edit title and image
-    nextCard.addEventListener("click", function () {
+  for (let i = 0; i < exerciseList.length; i++) {
+    const exercise = exerciseList[i];
+    const nextCard = templateCard.cloneNode(true);
+    
+    editCardContent(
+      nextCard,
+      exercise.name,
+      exercise.image,
+      exercise.cues,
+      exercise.bodyPart,
+      exercise.type,
+      exercise.recommendedByMe
+    );
+
+    nextCard.addEventListener("click", () => {
       addToWorkout(exercise.name);
       removeCardWithAnimation(nextCard);
     });
-    cardContainer.appendChild(nextCard); // Add new card to the container
+
+    cardContainer.appendChild(nextCard);
   }
 }
 
-function editCardContent(card, newTitle, newImageURL, cues, bodyPart, type, recommended) {
+function editCardContent(card, name, imageURL, cues, bodyPart, type, recommended) {
   card.style.display = "block";
-
   const cardHeader = card.querySelector("h2");
-  cardHeader.textContent = newTitle;
+  cardHeader.textContent = name;
 
-  // Inject tag container (right below header)
+  // Tag section
   let tagContainer = card.querySelector(".tag-container");
   if (!tagContainer) {
     tagContainer = document.createElement("div");
@@ -35,71 +45,57 @@ function editCardContent(card, newTitle, newImageURL, cues, bodyPart, type, reco
   }
 
   tagContainer.innerHTML = `
-  <div class="tag-row">
-    ${recommended ? '<span class="tag star-tag">⭐ Recommended</span>' : ''}
-    <span class="tag body-tag">${bodyPart}</span>
-    <span class="tag type-tag ${type.toLowerCase()}">${type}</span>
-  </div>
-`;
+    <div class="tag-row">
+      ${recommended ? '<span class="tag star-tag">⭐ Recommended</span>' : ''}
+      <span class="tag body-tag">${bodyPart}</span>
+      <span class="tag type-tag ${type.toLowerCase()}">${type}</span>
+    </div>
+  `;
 
   const cardImage = card.querySelector("img");
-  cardImage.src = newImageURL;
-  cardImage.alt = newTitle + " Image";
+  cardImage.src = imageURL;
+  cardImage.alt = `${name} Image`;
 
   const ul = card.querySelector("ul");
-  ul.innerHTML = ""; // clear existing bullet points
-
-  for (let i = 0; i < cues.length; i++) {
+  ul.innerHTML = "";
+  cues.forEach(cue => {
     const li = document.createElement("li");
-    li.textContent = cues[i];
+    li.textContent = cue;
     ul.appendChild(li);
-  }
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  showCards();
-
-  // search fuhction
-  document.getElementById("searchBar").addEventListener("input", searchExercises);
-
-  // add exercise fuhction
-  const form = document.getElementById("addExerciseForm");
-  if (form) {
-    form.addEventListener("submit", addExercise);
-  }
-});
-
-function removeLastCard() {
-  exercises.pop(); // Remove last item in titles array
-  showCards(); // Call showCards again to refresh
-}
-
-function addToWorkout(exerciseName) {
-  const list = document.getElementById("selected-list");
-  const items = list.querySelectorAll("li");
-
-  for (let item of items) {
-    if (item.textContent === exerciseName) return; // Prevent duplicates
-  }
-
-  const li = document.createElement("li");
-  li.textContent = exerciseName;
-
-  list.appendChild(li);
+  });
 }
 
 function removeCardWithAnimation(card) {
   card.style.transition = "opacity 0.4s ease, transform 0.4s ease";
   card.style.opacity = "0";
   card.style.transform = "scale(0.95)";
-
-  setTimeout(() => {
-    card.remove();
-  }, 400); // matches the transition time
+  setTimeout(() => card.remove(), 400);
 }
 
+/* ========== WORKOUT SELECTION ========== */
+
+function addToWorkout(exerciseName) {
+  const list = document.getElementById("selected-list");
+  const items = list.querySelectorAll("li");
+
+  for (const item of items) {
+    if (item.textContent === exerciseName) return;
+  }
+
+  const li = document.createElement("li");
+  li.textContent = exerciseName;
+  list.appendChild(li);
+}
+
+function removeLastCard() {
+  exercises.shift();
+  showCards();
+}
+
+/* ========== FORM: ADD EXERCISE ========== */
+
 function addExercise(event) {
-  event.preventDefault(); // Prevent page reload
+  event.preventDefault();
 
   const name = document.getElementById("newName").value.trim();
   const bodyPart = document.getElementById("newBody").value.trim();
@@ -112,8 +108,8 @@ function addExercise(event) {
   }
 
   const newExercise = {
-    name: name,
-    bodyPart: bodyPart,
+    name,
+    bodyPart,
     type: capitalize(type),
     recommendedByMe: false,
     cues: ["Engage core", "Control the movement", "Breathe steadily"],
@@ -129,29 +125,27 @@ function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+/* ========== SEARCH BAR ========== */
+
 function searchExercises() {
   const input = document.getElementById("searchBar").value.toLowerCase();
   const searchTerms = input.split(" ").filter(term => term.trim() !== "");
 
   const resultMessage = document.getElementById("search-result");
-
-  const filteredExercises = exercises.filter(exercise =>
+  const filtered = exercises.filter(ex =>
     searchTerms.every(term =>
-      exercise.name.toLowerCase().includes(term)
+      ex.name.toLowerCase().includes(term)
     )
   );
 
-  // Feedback message
-  if (filteredExercises.length === 0) {
-    resultMessage.textContent = "No exercises match your search.";
-  } else {
-    resultMessage.textContent = "";
-  }
+  resultMessage.textContent = filtered.length === 0
+    ? "No exercises match your search."
+    : "";
 
-  showCards(filteredExercises);
+  showCards(filtered);
 }
 
-document.getElementById("sortFilter").addEventListener("change", filterExercises);
+/* ========== FILTER / SORT DROPDOWN ========== */
 
 function filterExercises() {
   const selected = document.getElementById("sortFilter").value;
@@ -161,13 +155,11 @@ function filterExercises() {
     case "name":
       filtered = [...exercises].sort((a, b) => a.name.localeCompare(b.name));
       break;
-
     case "compound":
     case "isolation":
     case "isometric":
       filtered = exercises.filter(ex => ex.type.toLowerCase() === selected);
       break;
-
     case "arms":
     case "back":
     case "chest":
@@ -179,14 +171,27 @@ function filterExercises() {
     case "shoulders":
       filtered = exercises.filter(ex => ex.bodyPart.toLowerCase() === selected);
       break;
-
     case "recommended":
       filtered = exercises.filter(ex => ex.recommendedByMe === true);
       break;
-
     default:
       filtered = [...exercises];
   }
 
   showCards(filtered);
 }
+
+/* ========== INITIAL SETUP ========== */
+
+document.addEventListener("DOMContentLoaded", () => {
+  showCards();
+
+  document.getElementById("removeExercise").addEventListener("click", removeLastCard);
+
+  document.getElementById("searchBar").addEventListener("input", searchExercises);
+
+  const form = document.getElementById("addExerciseForm");
+  if (form) form.addEventListener("submit", addExercise);
+
+  document.getElementById("sortFilter").addEventListener("change", filterExercises);
+});

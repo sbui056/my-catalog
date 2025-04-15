@@ -55,9 +55,10 @@ html, body {
 
 /* Section headings */
 .section-title {
-  font-size: 1.8rem;
+  font-size: 2.7rem;
   margin-bottom: 15px;
   color: #444;
+  text-align: center;
 }
 
 /* === CARDS === */
