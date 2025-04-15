@@ -327,3 +327,27 @@ html, body {
   border-color: #2d87f0;
   box-shadow: 0 0 0 3px rgba(45, 135, 240, 0.2);
 }
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.body-tag.arms { background-color: #8e44ad; }
+.body-tag.back { background-color: #3498db; }
+.body-tag.chest { background-color: #e74c3c; }
+.body-tag.core { background-color: #f39c12; }
+.body-tag.glutes { background-color: #e67e22; }
+.body-tag.hamstrings { background-color: #1abc9c; }
+.body-tag.legs { background-color: #2ecc71; }
+.body-tag.shoulders { background-color: #9b59b6; }
+.body-tag.fullbody, .body-tag.full-body { background-color: #34495e; }
+
+#selected-list .body-tag.arms { background-color: #8e44ad; }
+#selected-list .body-tag.back { background-color: #3498db; }
+#selected-list .body-tag.chest { background-color: #e74c3c; }
+#selected-list .body-tag.core { background-color: #f39c12; }
+#selected-list .body-tag.glutes { background-color: #e67e22; }
+#selected-list .body-tag.hamstrings { background-color: #1abc9c; }
+#selected-list .body-tag.legs { background-color: #2ecc71; }
+#selected-list .body-tag.shoulders { background-color: #9b59b6; }

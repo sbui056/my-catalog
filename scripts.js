@@ -47,7 +47,7 @@ function editCardContent(card, name, imageURL, cues, bodyPart, type, recommended
   tagContainer.innerHTML = `
     <div class="tag-row">
       ${recommended ? '<span class="tag star-tag">⭐ Recommended</span>' : ''}
-      <span class="tag body-tag">${bodyPart}</span>
+      <span class="tag body-tag ${bodyPart.toLowerCase().replace(' ', '')}">${bodyPart}</span>
       <span class="tag type-tag ${type.toLowerCase()}">${type}</span>
     </div>
   `;
@@ -65,10 +65,15 @@ function editCardContent(card, name, imageURL, cues, bodyPart, type, recommended
   });
 }
 
+function removeFirstCard() {
+  exercises.shift();
+  showCards();
+}
+
 function removeCardWithAnimation(card) {
   card.style.transition = "opacity 0.4s ease, transform 0.4s ease";
   card.style.opacity = "0";
-  card.style.transform = "scale(0.95)";
+  card.style.transform = "scale(0.95) translateY(10px)";
   setTimeout(() => card.remove(), 400);
 }
 
@@ -89,13 +94,8 @@ function addToWorkout(exerciseName) {
 
   const li = document.createElement("li");
   li.dataset.name = exerciseName; // so we can track it for duplicates
-  li.innerHTML = `<strong>${exercise.name}</strong> <span class="tag body-tag">${exercise.bodyPart}</span>`;
+  li.innerHTML = `<strong>${exercise.name}</strong> <span class="tag body-tag ${exercise.bodyPart.toLowerCase().replace(' ', '')}">${exercise.bodyPart}</span>`;
   list.appendChild(li);
-}
-
-function removeLastCard() {
-  exercises.shift();
-  showCards();
 }
 
 /* ========== FORM: ADD EXERCISE ========== */
@@ -192,7 +192,7 @@ function filterExercises() {
 document.addEventListener("DOMContentLoaded", () => {
   showCards();
 
-  document.getElementById("removeExercise").addEventListener("click", removeLastCard);
+  document.getElementById("removeExercise").addEventListener("click", removeFirstCard);
 
   document.getElementById("searchBar").addEventListener("input", searchExercises);
 
