@@ -146,15 +146,6 @@ const exercises = [
       image: "images/exercises/deadlift.png"
     },
     {
-      name: "Chest-Supported Row",
-      bodyPart: "Back",
-      type: "Isolation",
-      recommendedByMe: true,
-      cues: ["Elbows tight", "Pause at peak", "Keep chest down"],
-      notes: "Reduces lower back stress — pure upper back work.",
-      image: "images/exercises/chestSupportedRow.png"
-    },
-    {
       name: "Dumbbell Lateral Raise",
       bodyPart: "Shoulders",
       type: "Isolation",
@@ -173,15 +164,6 @@ const exercises = [
       image: "images/exercises/overheadPress.png"
     },
     {
-      name: "Arnold Press",
-      bodyPart: "Shoulders",
-      type: "Compound",
-      recommendedByMe: false,
-      cues: ["Rotate smoothly", "Keep constant tension", "Don't rush"],
-      notes: "Adds a bit more front delt emphasis.",
-      image: "images/exercises/arnoldPress.png"
-    },
-    {
       name: "Face Pulls",
       bodyPart: "Shoulders",
       type: "Isolation",
@@ -189,15 +171,6 @@ const exercises = [
       cues: ["High elbow pull", "Pause at contraction", "Don’t shrug"],
       notes: "Essential for rear delt and shoulder health.",
       image: "images/exercises/facePulls.png"
-    },
-    {
-      name: "Dumbbell Front Raise",
-      bodyPart: "Shoulders",
-      type: "Isolation",
-      recommendedByMe: true,
-      cues: ["Straight arms", "No momentum", "Raise to eye level"],
-      notes: "Only if I need front delt focus.",
-      image: "images/exercises/frontRaise.png"
     },
     {
       name: "Incline Dumbbell Press",
@@ -287,7 +260,7 @@ const exercises = [
       recommendedByMe: true,
       cues: ["Pause on chest", "Tight brace", "Explode up"],
       notes: "Strengthens sticking points — use for progression.",
-      image: "images/exercises/pauseBenchPress.png"
+      image: "images/exercises/pauseBenchPress.jpg"
     },
     {
       name: "Tricep Extensions",
@@ -323,7 +296,7 @@ const exercises = [
       recommendedByMe: true,
       cues: ["Flat back", "Engage glutes", "Don’t let hips sag"],
       notes: "Simple but effective core stabilizer.",
-      image: "images/exercises/plank.png"
+      image: "images/exercises/plank.jpg"
     },
     {
       name: "Sit-Ups",
@@ -332,7 +305,7 @@ const exercises = [
       recommendedByMe: false,
       cues: ["Chin neutral", "Don’t yank neck", "Controlled reps"],
       notes: "Basic ab burner — I use it in circuits.",
-      image: "images/exercises/situps.png"
+      image: "images/exercises/situps.jpeg"
     },
     {
       name: "Sumo Deadlift",
@@ -377,7 +350,7 @@ const exercises = [
         recommendedByMe: false,
         cues: ["Tight grip", "Core braced", "Controlled steps"],
         notes: "Insane grip and trap builder.",
-        image: "images/exercises/farmersCarry.png"
+        image: "images/exercises/farmersCarry.jpg"
       },
       {
         name: "Zercher Squat",
@@ -386,7 +359,7 @@ const exercises = [
         recommendedByMe: false,
         cues: ["Elbows under bar", "Core braced", "Keep chest up"],
         notes: "Unconventional squat — loads front and hits core hard.",
-        image: "images/exercises/zercherSquat.png"
+        image: "images/exercises/zercherSquat.jpg"
       },
       {
         name: "Donkey Kicks",
@@ -395,7 +368,7 @@ const exercises = [
         recommendedByMe: false,
         cues: ["Squeeze at top", "Don't arch lower back", "Controlled reps"],
         notes: "Targeted glute finisher.",
-        image: "images/exercises/donkeyKicks.png"
+        image: "images/exercises/donkeyKicks.jpg"
       },
       {
         name: "Hip Thrust",
@@ -404,7 +377,7 @@ const exercises = [
         recommendedByMe: false,
         cues: ["Chin tucked", "Lock out hips", "Glutes tight"],
         notes: "Top-tier glute builder.",
-        image: "images/exercises/hipThrust.png"
+        image: "images/exercises/hipThrust.jpg"
       },
       {
         name: "Cable Lateral Raise",
@@ -422,7 +395,7 @@ const exercises = [
         recommendedByMe: false,
         cues: ["Control tempo", "Press upward", "Full range"],
         notes: "Good for upper chest with minimal setup.",
-        image: "images/exercises/inclineMachinePress.png"
+        image: "images/exercises/inclineMachinePress.jpg"
       },
       {
         name: "Russian Twists",
@@ -431,7 +404,7 @@ const exercises = [
         recommendedByMe: false,
         cues: ["Twist fully", "Engage obliques", "Stay balanced"],
         notes: "Great rotational core move.",
-        image: "images/exercises/russianTwists.png"
+        image: "images/exercises/russianTwists.jpg"
       }      
 ];
 
