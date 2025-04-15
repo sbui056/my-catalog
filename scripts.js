@@ -2,13 +2,13 @@
 import exercises from "./exercises.js";
 
 // This function adds cards the page to display the data in the array
-function showCards() {
+function showCards(exerciseList = exercises) {
   const cardContainer = document.getElementById("card-container");
   cardContainer.innerHTML = "";
   const templateCard = document.querySelector(".card");
 
   for (let i = 0; i < exercises.length; i++) {
-    let exercise = exercises[i];
+    let exercise = exerciseList[i];
     let imageURL = exercise.image;
     const nextCard = templateCard.cloneNode(true); // Copy the template card
     editCardContent(nextCard, exercise.name, imageURL, exercise.cues, exercise.bodyPart, exercise.type, exercise.recommendedByMe); // Edit title and image
@@ -56,8 +56,19 @@ function editCardContent(card, newTitle, newImageURL, cues, bodyPart, type, reco
   }
 }
 
-// This calls the addCards() function when the page is first loaded
-document.addEventListener("DOMContentLoaded", showCards);
+document.addEventListener("DOMContentLoaded", () => {
+  showCards();
+
+  // search fuhction
+  document.getElementById("searchBar").addEventListener("input", searchExercises);
+
+  // add exercise fuhction
+  const form = document.getElementById("addExerciseForm");
+  if (form) {
+    form.addEventListener("submit", addExercise);
+  }
+});
+
 
 function quoteAlert() {
   console.log("Button Clicked!");
@@ -95,3 +106,55 @@ function removeCardWithAnimation(card) {
   }, 400); // matches the transition time
 }
 
+function addExercise(event) {
+  event.preventDefault(); // Prevent page reload
+
+  const name = document.getElementById("newName").value.trim();
+  const bodyPart = document.getElementById("newBody").value.trim();
+  const type = document.getElementById("newType").value.trim().toLowerCase();
+  const image = document.getElementById("newImage").value.trim();
+
+  if (!name || !bodyPart || !type) {
+    alert("Please fill in all required fields.");
+    return;
+  }
+
+  const newExercise = {
+    name: name,
+    bodyPart: bodyPart,
+    type: capitalize(type),
+    recommendedByMe: false,
+    cues: ["Engage core", "Control the movement", "Breathe steadily"],
+    image: image || "images/exercises/default.png"
+  };
+
+  exercises.push(newExercise);
+  showCards();
+  event.target.reset();
+}
+
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function searchExercises() {
+  const input = document.getElementById("searchBar").value.toLowerCase();
+  const searchTerms = input.split(" ").filter(term => term.trim() !== "");
+
+  const resultMessage = document.getElementById("search-result");
+
+  const filteredExercises = exercises.filter(exercise =>
+    searchTerms.every(term =>
+      exercise.name.toLowerCase().includes(term)
+    )
+  );
+
+  // Feedback message
+  if (filteredExercises.length === 0) {
+    resultMessage.textContent = "No exercises match your search.";
+  } else {
+    resultMessage.textContent = "";
+  }
+
+  showCards(filteredExercises);
+}

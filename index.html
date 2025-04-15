@@ -21,14 +21,26 @@
        <h2 class="section-title">Exercise Catalog</h2>
         <div class="top-panel">
           <button onclick="quoteAlert();">Get A Quote!</button>
-          <button onclick="removeLastCard();">Remove A Card!</button>
+          <button onclick="removeLastCard();">Remove An Exercise!</button>
+          <input type="text"id="searchBar" placeholder="Search exercises..." class="search-input"/>
+            <p id="search-result" class="search-message"></p>
         </div>
        <div id="card-container"></div>
      </section>
 
+     <!-- MIDDLE: Add Exercise -->
+     <form id="addExerciseForm" class="add-form">
+      <h3>Add New Exercise</h3>
+      <input type="text" id="newName" placeholder="Exercise Name" required />
+      <input type="text" id="newBody" placeholder="Body Part" required />
+      <input type="text" id="newType" placeholder="Type (Compound/Isolation)" required />
+      <input type="text" id="newImage" placeholder="Image Path (optional)" />
+      <button type="submit">Add Exercise</button>
+    </form>
+
      <!-- RIGHT: Current Workout -->
      <section id="side-panel" class="side-column">
-       <h2 class="section-title">Workout</h2>
+       <h2 class="section-title">Today's Workout</h2>
        <ul id="selected-list"></ul>
      </section>
 
