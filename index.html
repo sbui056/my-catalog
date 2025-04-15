@@ -1,31 +1,51 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>LA TV Shows | Home</title>
-    <meta name="description" content="A Catalog of Shows Set in Los Angeles" />
+    <title>WorkoutToday</title>
+    <meta name="description" content="A Catalog of Exercises to Create Today's Workout!" />
     <link rel="stylesheet" href="style.css" />
     <script type="module" src="scripts.js"></script>
   </head>
 
   <body>
+
     <header class="main-header">
-      <h1 class="title">Reps & Recs</h1>
+      <h1 class="title">WorkoutToday</h1>
     </header>
-    <div id="card-container"></div>
-    <div class="card" style="display: none">
-      <div class="card-content">
-        <h2>TV Show Title</h2>
-        <img src="" alt="TV Show Poster" />
-        <ul>
-          <li>Bullet Point 1</li>
-          <li>Bullet Point 2</li>
-          <li>Bullet Point 3</li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer">
-      <button onclick="quoteAlert();">Get A Quote!</button>
-      <button onclick="removeLastCard();">Remove A Card!</button>
-    </div>
+
+   <!-- 2 Columns -->
+   <main class="main-container">
+    
+     <!-- LEFT: Exercise Catalog -->
+     <section id="exercise-list" class="main-column">
+       <h2 class="section-title">Exercise Catalog</h2>
+        <div class="top-panel">
+          <button onclick="quoteAlert();">Get A Quote!</button>
+          <button onclick="removeLastCard();">Remove A Card!</button>
+        </div>
+       <div id="card-container"></div>
+     </section>
+
+     <!-- RIGHT: Current Workout -->
+     <section id="side-panel" class="side-column">
+       <h2 class="section-title">Workout</h2>
+       <ul id="selected-list"></ul>
+     </section>
+
+   </main>
+
+    <!-- Hidden Card Template -->
+<div class="card" style="display: none">
+  <div class="card-content">
+    <h2>Exercises</h2>
+    <img src="" alt="Exercise Image" />
+    <ul>
+      <li>Cue 1</li>
+      <li>Cue 2</li>
+      <li>Cue 3</li>
+    </ul>
+  </div>
+</div>
+
   </body>
 </html>
