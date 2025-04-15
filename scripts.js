@@ -12,6 +12,10 @@ function showCards() {
     let imageURL = exercise.image;
     const nextCard = templateCard.cloneNode(true); // Copy the template card
     editCardContent(nextCard, exercise.name, imageURL, exercise.cues); // Edit title and image
+    nextCard.addEventListener("click", function () {
+      addToWorkout(exercise.name);
+      removeCardWithAnimation(nextCard);
+    });
     cardContainer.appendChild(nextCard); // Add new card to the container
   }
 }
@@ -50,3 +54,28 @@ function removeLastCard() {
   exercises.pop(); // Remove last item in titles array
   showCards(); // Call showCards again to refresh
 }
+
+function addToWorkout(exerciseName) {
+  const list = document.getElementById("selected-list");
+  const items = list.querySelectorAll("li");
+
+  for (let item of items) {
+    if (item.textContent === exerciseName) return; // Prevent duplicates
+  }
+
+  const li = document.createElement("li");
+  li.textContent = exerciseName;
+
+  list.appendChild(li);
+}
+
+function removeCardWithAnimation(card) {
+  card.style.transition = "opacity 0.4s ease, transform 0.4s ease";
+  card.style.opacity = "0";
+  card.style.transform = "scale(0.95)";
+
+  setTimeout(() => {
+    card.remove();
+  }, 400); // matches the transition time
+}
+
