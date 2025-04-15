@@ -78,12 +78,18 @@ function addToWorkout(exerciseName) {
   const list = document.getElementById("selected-list");
   const items = list.querySelectorAll("li");
 
+  // Prevent duplicates
   for (const item of items) {
     if (item.textContent === exerciseName) return;
   }
 
+  // Find the full exercise object
+  const exercise = exercises.find(ex => ex.name === exerciseName);
+  if (!exercise) return;
+
   const li = document.createElement("li");
-  li.textContent = exerciseName;
+  li.dataset.name = exerciseName; // so we can track it for duplicates
+  li.innerHTML = `<strong>${exercise.name}</strong> <span class="tag body-tag">${exercise.bodyPart}</span>`;
   list.appendChild(li);
 }
 
